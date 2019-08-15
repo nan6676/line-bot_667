@@ -50,3 +50,15 @@ def handle_message(event):
 
 if __name__ == "__main__":
     app.run()
+
+# Your Account SID from twilio.com/console
+account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
+# Your Auth Token from twilio.com/console
+auth_token  = "1e56fa5abf3b2178c24a683b356db708"
+
+client = Client(account_sid, auth_token)
+
+message = client.messages.create(
+    to="+886939525301", 
+    from_="+18024414035",
+    body= r)
