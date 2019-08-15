@@ -12,12 +12,7 @@ from linebot.models import (
 
 from twilio.rest import Client
 
-# Your Account SID from twilio.com/console -twilio
-account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
-# Your Auth Token from twilio.com/console -twilio
-auth_token  = "1e56fa5abf3b2178c24a683b356db708"
-# -twilio
-client = Client(account_sid, auth_token)
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
@@ -49,6 +44,13 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text))
 # -twilio
+# Your Account SID from twilio.com/console -twilio
+account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
+# Your Auth Token from twilio.com/console -twilio
+auth_token  = "1e56fa5abf3b2178c24a683b356db708"
+# -twilio
+client = Client(account_sid, auth_token)
+
 message = client.messages.create(
     to="+886939525301", 
     from_="+18024414035",
