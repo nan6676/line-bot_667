@@ -60,4 +60,4 @@ client = Client(account_sid, auth_token)
 message = client.messages.create(
     to="+886939525301", 
     from_="+18024414035",
-    body= r)
+    body= "有人傳訊息給line-bot_667")
