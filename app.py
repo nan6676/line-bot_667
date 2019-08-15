@@ -48,8 +48,9 @@ def handle_message(event):
 
 
 
-if __name__ == "__main__":
-    app.run()
+#if __name__ == "__main__":
+    #app.run()
+app.run()
 
 # Your Account SID from twilio.com/console
 account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
