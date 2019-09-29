@@ -21,7 +21,7 @@ handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 # Your Account SID from twilio.com/console
 account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
 # Your Auth Token from twilio.com/console
-auth_token  = "1e56fa5abf3b2178c24a683b356db708"
+auth_token  = "2a30547eb0c7eb73b023d44828e9607e"
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -60,4 +60,4 @@ client = Client(account_sid, auth_token)
 message = client.messages.create(
     to="+886939525301", 
     from_="+18024414035",
-    body= "有人傳訊息給line-bot_667")
+    body= r)
