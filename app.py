@@ -54,7 +54,7 @@ if __name__ == "__main__":
 # Your Account SID from twilio.com/console
 account_sid = "ACbb17bc67f6247ac1cf987d433e8e15fd"
 # Your Auth Token from twilio.com/console
-auth_token  = "2a30547eb0c7eb73b023d44828e9607e"
+auth_token  = "2a30547eb0c7eb73b023d44828e9607e1"
 client = Client(account_sid, auth_token)
 
 message = client.messages.create(
