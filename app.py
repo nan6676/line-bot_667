@@ -43,11 +43,12 @@ def handle_message(event):
     mag = event.message.text
     r = event.message.text
     s = "天氣好"
-    r.split(r = "")
-    str(r)[::-1]
+    r = s
+    #r.split(r = "")
+    #str(r)[::-1]
     line_bot_api.reply_message(
         event.reply_token,  
-        TextSendMessage(text=s))
+        TextSendMessage(text=r))
 
 
 
