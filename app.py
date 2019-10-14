@@ -42,7 +42,7 @@ def callback():
 def handle_message(event):
     mag = event.message.text
     r = event.message.text
-    s = "天氣好"
+    s = str(mag.split(mag = ""))[::-1]
     r = s
     #r.split(r = "")
     #str(r)[::-1]
