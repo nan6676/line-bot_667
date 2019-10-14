@@ -43,7 +43,7 @@ def handle_message(event):
     mag = event.message.text
     r = event.message.text
     s = str(mag.split(mag = ""))[::-1]
-    r = s
+    r = s[0]
     #r.split(r = "")
     #str(r)[::-1]
     line_bot_api.reply_message(
