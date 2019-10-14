@@ -42,7 +42,7 @@ def callback():
 def handle_message(event):
     mag = event.message.text
     r = event.message.text
-    r.split(str = "")
+    r.split(r = "")
     str(r)[::-1]
     line_bot_api.reply_message(
         event.reply_token,  
