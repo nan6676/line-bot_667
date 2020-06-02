@@ -50,6 +50,7 @@ def handle_message(event):
     #line_bot_api.reply_message(
         #event.reply_token,  
         #TextSendMessage(text=r))
+    input_text = event.message.text
     if input_text == '@查詢匯率':
         resp = requests.get('https://tw.rter.info/capi.php')
         currency_data = resp.json()
