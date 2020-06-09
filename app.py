@@ -117,8 +117,8 @@ def handle_message(event):
         # 整理成表格
         highway_df = pd.DataFrame({
             '車次': train_numbers,
-            '出發時間': departure_times,
-            '到達時間': arrival_times,
+            '南港出發': departure_times,
+            '到達桃園': arrival_times,
             '行車時間': duration},
             columns = ['車次', '南港出發', '到達桃園', '行車時間'])
 
