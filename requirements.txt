@@ -3,3 +3,7 @@ gunicorn
 flask
 twilio
 jsonify
+bs4
+BeautifulSoup
+json
+pandas
