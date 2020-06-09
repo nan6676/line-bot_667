@@ -122,6 +122,10 @@ def handle_message(event):
             '行車時間': duration},
             columns = ['車次', '出發時間', '到達時間', '行車時間'])
 
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=f'{highway_df}'))    
+
 
 
 
