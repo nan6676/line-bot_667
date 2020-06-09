@@ -3,5 +3,4 @@ gunicorn
 flask
 jsonify
 bs4
-json
 pandas
