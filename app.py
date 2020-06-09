@@ -11,7 +11,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-from twilio.rest import Client
+#from twilio.rest import Client
 
 #import requests
 from bs4 import BeautifulSoup
