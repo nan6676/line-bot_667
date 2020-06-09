@@ -120,7 +120,7 @@ def handle_message(event):
             '出發時間': departure_times,
             '到達時間': arrival_times,
             '行車時間': duration},
-            columns = ['車次', '南港出發時間', '到達桃園時間', '行車時間'])
+            columns = ['車次', '南港出發', '到達桃園', '行車時間'])
 
         line_bot_api.reply_message(
         event.reply_token,
