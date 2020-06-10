@@ -122,12 +122,12 @@ def handle_message(event):
             '行車時間': duration},
             columns = ['車次', '南港出發', '到達桃園', '行車時間'])
         filter = highway_df["出發時間"] > now_time
-        
+
 
 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=f'{highway_df[filter]}'))    
+            TextSendMessage(text=f'{(highway_df[filter])}'))    
 
 
 
