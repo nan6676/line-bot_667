@@ -11,6 +11,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+from linebot.exceptions import LineBotApiError
 #from twilio.rest import Client
 
 #import requests
@@ -27,6 +28,11 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 
+try:
+    line_bot_api.push_message('lin6676', TextSendMessage(text='Hello World!'))
+except LineBotApiError as e:
+    # error handle
+    ...
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -103,7 +109,7 @@ def handle_message(event):
         departure_times = []
         for item in trainItem:
             departure_times.append(item['DepartureTime'])
-
+            
         # 所有到達時間(arrival_time)
         arrival_times = []
         for item in trainItem:
