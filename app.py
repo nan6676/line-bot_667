@@ -29,7 +29,7 @@ line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYi
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 
 try:
-    line_bot_api.push_message('lin6676', TextSendMessage(text='Hello World!'))
+    line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))
 except LineBotApiError as e:
     # error handle
     ...
