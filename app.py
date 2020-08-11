@@ -150,7 +150,7 @@ def handle_message(event):
     elif input_text == '@ID':   
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text= user_id))#(text=f'{user_id}')
+            TextSendMessage(text=f'{user_id}'))#(text=f'{user_id}')
 
 
 
