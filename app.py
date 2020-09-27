@@ -163,9 +163,9 @@ def handle_message(event):
 
         for each_title in articles:
             if 'title' in (str(each_title)):
-                issue.append(each_title.text)
+                issue.append(str(each_title.text))
             elif 'span' in (str(each_title)):
-                forum.append(each_title.text)
+                forum.append(str(each_title.text))
 
 
 
