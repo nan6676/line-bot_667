@@ -161,7 +161,7 @@ def handle_message(event):
             if 'title' in (str(each_title)):
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text=f'{each_title.text+ ' https://www.mobile01.com/'+ each_title['href']}'))
+                    TextSendMessage(text=f'{each_title.text}'))
 
 
 
