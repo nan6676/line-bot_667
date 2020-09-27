@@ -175,7 +175,7 @@ def handle_message(event):
             columns = ['熱門討論', '討論區'])
         line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text= mobile01))
+                    TextSendMessage(text= f'{ mobile01}'))
                 
 
 
