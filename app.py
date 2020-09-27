@@ -28,11 +28,11 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 
-try:
-    line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))
+'''try:#傳送訊息給指定的人
+    line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))#傳送訊息給指定的人
 except LineBotApiError as e:
-    # error handle
-    ...
+     error handle
+    ...'''
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -152,12 +152,21 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=f'{user_id}'))#(text=f'{user_id}')
 
+    elif input_text == '@話題':
+        web = 'https://www.mobile01.com/hottopics.php'
+        res = requests.get(web, headers={'User-Agent': 'Custom'})
+        soup = BeautifulSoup(res.text, 'html.parser')
+        articles = soup.select('.c-listTableTd__title a')
+        for each_title in articles:
+            if 'title' in (str(each_title)):
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=f'{each_title.text+ ' https://www.mobile01.com/'+ each_title['href']}'))
+
+
 
 
             
-
-            
-
 
 if __name__ == "__main__":
     app.run()
