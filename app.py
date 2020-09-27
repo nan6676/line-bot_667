@@ -164,6 +164,7 @@ def handle_message(event):
         for each_title in articles:
             if 'title' in (str(each_title)):
                 issue.append(each_title.text)
+                form.append('https://www.mobile01.com/'+ each_title['href'])
             elif 'span' in (str(each_title)):
                 forum.append(each_title.text)
 
@@ -171,8 +172,9 @@ def handle_message(event):
 
         mobile01 = pd.DataFrame({
             '熱門討論': issue,
-            '討論區': forum},
-            columns = ['熱門討論', '討論區'])
+            '討論區': forum,
+            '網址': form},
+            columns = ['熱門討論', '討論區', '網址'])
         line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text= f'{ mobile01}'))
