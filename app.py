@@ -176,7 +176,7 @@ def handle_message(event):
             '網址': form},
             columns = ['熱門討論', '討論區', '網址'])
 
-        filter = mobile01[index] < 10
+        filter = mobile01(index) < 10
         mobile01 = mobile01[filter]
 
 
