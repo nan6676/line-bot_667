@@ -165,7 +165,7 @@ def handle_message(event):
             if 'title' in (str(each_title)):
                 issue.append(each_title.text)
             elif 'span' in (str(each_title)):
-                issue.append(each_title.text)
+                forum.append(each_title.text)
 
 
 
