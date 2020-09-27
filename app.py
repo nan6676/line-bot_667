@@ -157,11 +157,21 @@ def handle_message(event):
         res = requests.get(web, headers={'User-Agent': 'Custom'})
         soup = BeautifulSoup(res.text, 'html.parser')
         articles = soup.select('.c-listTableTd__title a')
+        issue = []
+        form = []
+        forum = []
+
         for each_title in articles:
             if 'title' in (str(each_title)):
-                line_bot_api.reply_message(
+                issue.append(each_title.text)
+
+        mobile01 = pd.DataFrame({
+            '熱門討論': issue},
+            columns = ['熱門討論'])
+        line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text=f'{each_title.text}'))
+                    TextSendMessage(text=f'{mobile01}'))
+                
 
 
 
