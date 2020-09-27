@@ -163,15 +163,15 @@ def handle_message(event):
 
         for each_title in articles:
             if 'title' in (str(each_title)):
-                issue.append(str(each_title.text))
+                issue.append(each_title.text)
             elif 'span' in (str(each_title)):
-                forum.append(str(each_title.text))
+                forum.append(each_title.text)
 
 
 
         mobile01 = pd.DataFrame({
-            '討論區': forum,
-            '熱門討論': issue},
+            '熱門討論': issue,
+            '討論區': forum},
             columns = ['熱門討論', '討論區'])
         line_bot_api.reply_message(
                     event.reply_token,
