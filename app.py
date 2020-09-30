@@ -137,7 +137,7 @@ def handle_message(event):
             '到達桃園': arrival_times,
             '行車時間': duration,
             '自由坐車廂': nonreservedcar},
-            columns = ['車次', '南港出發', '到達桃園', '行車時間', '自由坐車廂'], index = train_numbers)
+            columns = [ '南港出發', '到達桃園', '行車時間', '自由坐車廂'], index = train_numbers)
         filter = highway_df["南港出發"] > now_time
         highway_df1 = highway_df[filter]
 
