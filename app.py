@@ -170,7 +170,7 @@ def handle_message(event):
 
 
 
-        mobile01 = pd.DataFrame({
+        mobile01 = pd.Series({
             '熱門討論': issue,
             '討論區': forum,
             '網址': form},
