@@ -160,7 +160,7 @@ def handle_message(event):
         issue = []
         form = []
         forum = []
-        
+        line = 'Mobile01熱門討論'+'\n'
 
         for each_title in articles:
             if 'title' in (str(each_title)):
