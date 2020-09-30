@@ -168,14 +168,14 @@ def handle_message(event):
             elif 'span' in (str(each_title)):
                 forum.append(each_title.text)
 
-        for x in range(30):
-            str(line.append(x+ issue[x]+' '+ forum[x]+ ' ' +form[x] +'\n'))
+        '''for x in range(30):
+            str(line.append(x+ issue[x]+' '+ forum[x]+ ' ' +form[x] +'\n'))'''
 
-        '''mobile01 = pd.DataFrame({
+        mobile01 = pd.DataFrame({
             '熱門討論': issue,
             '討論區': forum,
             '網址': form},
-            columns = ['熱門討論', '討論區'])'''
+            columns = ['熱門討論', '討論區'])
 
         '''filter = mobile01(index) < 10
         mobile01 = mobile01[filter]'''
