@@ -134,7 +134,7 @@ def handle_message(event):
         highway_df = pd.DataFrame({
             '車次': train_numbers,
             '從南港': departure_times,
-            '到達桃園': arrival_times,
+            '到桃園': arrival_times,
             '行車時間': duration,
             '自由坐車廂': nonreservedcar},
             columns = [ '從南港', '到桃園', '行車時間', '自由坐車廂'], index = train_numbers)
