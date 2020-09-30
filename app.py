@@ -160,8 +160,8 @@ def handle_message(event):
         issue = []
         form = []
         forum = []
-        line = None
         
+
         for each_title in articles:
             if 'title' in (str(each_title)):
                 issue.append(each_title.text)
@@ -170,7 +170,7 @@ def handle_message(event):
                 forum.append(each_title.text)
 
         for x in range(30):
-            line = (str(line))+ ((str(x))+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
+            line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
         
 
         '''mobile01 = pd.DataFrame({
