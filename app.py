@@ -133,12 +133,12 @@ def handle_message(event):
         # 整理成表格
         highway_df = pd.DataFrame({
             '車次': train_numbers,
-            '南港出發': departure_times,
+            '從南港': departure_times,
             '到達桃園': arrival_times,
             '行車時間': duration,
             '自由坐車廂': nonreservedcar},
-            columns = [ '南港出發', '到達桃園', '行車時間', '自由坐車廂'], index = train_numbers)
-        filter = highway_df["南港出發"] > now_time
+            columns = [ '從南港', '到桃園', '行車時間', '自由坐車廂'], index = train_numbers)
+        filter = highway_df["從南港"] > now_time
         highway_df1 = highway_df[filter]
 
 
