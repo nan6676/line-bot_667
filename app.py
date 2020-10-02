@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify, render_template#增加了 render_template
 import requests
 
 from linebot import (
@@ -33,7 +33,12 @@ handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 except LineBotApiError as e:
      error handle
     ...'''
+# 增加的這段放在下面
+@app.route("/")
+def home():
+    return render_template("home.html")
 
+# 接收 LINE 的資訊
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
