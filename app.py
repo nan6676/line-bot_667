@@ -177,18 +177,31 @@ def handle_message(event):
         for x in range(30):
             line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
         
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text= f'{ line}'))
 
-        '''mobile01 = pd.DataFrame({
-            '熱門討論': issue,
-            '討論區': forum,
-            '網址': form},
-            columns = ['熱門討論', '討論區'])'''
+    
+    elif input_text == '@ptt':
+        web = 'https://disp.cc/b/PttHot'
+        res = requests.get(web)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        articles = soup.select('.row2 a')
 
-        '''filter = mobile01(index) < 10
-        mobile01 = mobile01[filter]'''
+        issue = []
+        form = []
+        forum = []
+        line = 'PTT熱門討論'+'\n'
 
+        for each_title in articles:
+            if 'titleColor' in (str(each_title)):
+                issue.append(each_title.text)
+                form.append('https://disp.cc/b/'+ each_title['href'])
+            elif 'target' in (str(each_title)):
+                forum.append(each_title.text)
 
-        
+        for x in range(19):
+            line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
 
         line_bot_api.reply_message(
                     event.reply_token,
