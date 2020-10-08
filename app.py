@@ -201,9 +201,9 @@ def handle_message(event):
             elif 'target' in (str(each_title)):
                 forum.append(each_title.text)
         
-        count = (len(forum))
+        count = (len(issue))
         for x in range(count):
-            line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
+            line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ form[x] +'\n')
 
         line_bot_api.reply_message(
                     event.reply_token,
