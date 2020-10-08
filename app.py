@@ -166,7 +166,7 @@ def handle_message(event):
         form = []
         forum = []
         line = 'Mobile01熱門討論'+'\n'
-
+        
         for each_title in articles:
             if 'title' in (str(each_title)):
                 issue.append(each_title.text)
@@ -174,8 +174,9 @@ def handle_message(event):
             elif 'span' in (str(each_title)):
                 forum.append(each_title.text)
 
-        for x in range(30):
-            line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
+        count = (len(issue))
+        for x in range(count):
+            line = (str(line))+ ((str(x))+'.■ '+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
         
         line_bot_api.reply_message(
             event.reply_token,
@@ -199,8 +200,9 @@ def handle_message(event):
                 form.append('https://disp.cc/b/'+ each_title['href'])
             elif 'target' in (str(each_title)):
                 forum.append(each_title.text)
-
-        for x in range(19):
+        
+        count = (len(forum))
+        for x in range(count):
             line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ forum[x]+ ' ' + form[x] +'\n')
 
         line_bot_api.reply_message(
