@@ -7,9 +7,7 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
-)
+from linebot.models import *
 
 from linebot.exceptions import LineBotApiError
 #from twilio.rest import Client
