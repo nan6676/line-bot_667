@@ -221,6 +221,10 @@ def handle_message(event):
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='好圖'))
         ext = 'jpg'
         message_content = line_bot_api.get_message_content(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
