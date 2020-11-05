@@ -16,7 +16,7 @@ from linebot.exceptions import LineBotApiError
 from bs4 import BeautifulSoup
 
 import json
-import os#1106
+import tempfile, os#1106
 from imgurpython import ImgurClient#1106
 import pandas as pd
 
