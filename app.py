@@ -220,37 +220,38 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message(event):
-    ext = 'jpg'
-    message_content = line_bot_api.get_message_content(event.message.id)
-    with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
-        for chunk in message_content.iter_content():
-            tf.write(chunk)
-        tempfile_path = tf.name
+    if isinstance(event.message, ImageMessage):
+        ext = 'jpg'
+        message_content = line_bot_api.get_message_content(event.message.id)
+        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+            for chunk in message_content.iter_content():
+                tf.write(chunk)
+            tempfile_path = tf.name
 
 
-    dist_path = tempfile_path + '.' + ext
-    dist_name = os.path.basename(dist_path)
-    os.rename(tempfile_path, dist_path)
-    try:
-        client = ImgurClient(client_id, client_secret, access_token, refresh_token)
-        config = {
-            'album': album_id,
-            'name': 'Catastrophe!',
-            'title': 'Catastrophe!',
-            'description': f'test-{datetime.now()}'
-        }
-        path = os.path.join('static', 'tmp', dist_name)
-        client.upload_from_path(path, config=config, anon=False)
-        os.remove(path)
-        print(path)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='上傳成功'))
-    except:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='上傳失敗'))
-    return 0
+        dist_path = tempfile_path + '.' + ext
+        dist_name = os.path.basename(dist_path)
+        os.rename(tempfile_path, dist_path)
+        try:
+            client = ImgurClient(client_id, client_secret, access_token, refresh_token)
+            config = {
+                'album': album_id,
+                'name': 'Catastrophe!',
+                'title': 'Catastrophe!',
+                'description': f'test-{datetime.now()}'
+            }
+            path = os.path.join('static', 'tmp', dist_name)
+            client.upload_from_path(path, config=config, anon=False)
+            os.remove(path)
+            print(path)
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text='上傳成功'))
+        except:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text='上傳失敗'))
+        return 0
 
 
 
