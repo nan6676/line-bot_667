@@ -41,10 +41,11 @@ except LineBotApiError as e:
      error handle
     ...'''
 # 增加的這段放在下面
+'''
 @app.route("/")
 def home():
     return render_template("home.html")
-
+'''
 # 接收 LINE 的資訊
 @app.route("/callback", methods=['POST'])
 def callback():
