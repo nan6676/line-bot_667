@@ -227,7 +227,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text='好圖'))
         ext = 'jpg'
-        message_content = line_bot_api.get_message_content('<message_id>')#(event.message.id)
+        message_content = line_bot_api.get_message_content(event.source.user_id)#(event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
