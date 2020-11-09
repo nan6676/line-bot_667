@@ -65,7 +65,7 @@ def callback():
 
     return 'OK'
 
-
+'''
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
@@ -218,7 +218,7 @@ def handle_message(event):
                     TextSendMessage(text= f'{ line}'))
                 
 
-
+'''
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_message(event):
     if isinstance(event.message, ImageMessage):
@@ -229,7 +229,7 @@ def handle_message(event):
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
-        with tempfile.NamedTemporaryFile(dir='/piccc', prefix=ext + '-') as tf:
+        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-') as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
             tempfile_path = tf.name
