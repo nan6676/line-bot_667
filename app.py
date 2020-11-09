@@ -220,7 +220,7 @@ def handle_message(event):
 
 
 @handler.add(MessageEvent, message=ImageMessage)
-def handle_message(event):
+def handle_content_message(event):
     if isinstance(event.message, ImageMessage):
 
         line_bot_api.reply_message(
