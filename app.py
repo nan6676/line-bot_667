@@ -228,7 +228,7 @@ def handle_message(event):
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
-        with open('/app/static/tmp/123.jpg', 'wb') as sd:
+        with open('/app/static/tmp/123', w) as sd:
             for chunk in message_content.iter_content():
                 sd.write(chunk)
             tempfile_path = sd.name
