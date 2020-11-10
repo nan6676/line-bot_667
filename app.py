@@ -218,7 +218,7 @@ def handle_message(event):
                     TextSendMessage(text= f'{ line}'))
                 
 
-
+'''
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_content_message(event):
     if isinstance(event.message, ImageMessage):
@@ -233,6 +233,7 @@ def handle_content_message(event):
             for chunk in message_content.iter_content():
                 fd.write(chunk)
             tempfile_path = fd.name
+
 
 
             dist_path = tempfile_path + '.' + ext
@@ -260,7 +261,7 @@ def handle_content_message(event):
             return 0
 
 
-
+'''
 
             
 
