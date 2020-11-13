@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify, render_template#增加了 render_template
+from flask import Flask, request, abort, jsonify#增加了 render_template
 import requests
 
 from linebot import (
