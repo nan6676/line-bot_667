@@ -16,7 +16,7 @@ from linebot.exceptions import LineBotApiError
 
 #import requests
 from bs4 import BeautifulSoup
-
+import random#新增1113
 import json
 import tempfile, os#1106
 from imgurpython import ImgurClient#1106
