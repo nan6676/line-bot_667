@@ -67,7 +67,7 @@ def callback():
 
     return 'OK'
 
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+
 
 @handler.add(MessageEvent, message=(TextMessage, ImageMessage))
 def handle_message(event):
@@ -231,7 +231,7 @@ def handle_message(event):
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
-        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+        with tempfile.NamedTemporaryFile(dir='./app/static/tmp/', prefix=ext + '-', delete=False) as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
             tempfile_path = tf.name
