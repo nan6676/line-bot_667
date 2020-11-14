@@ -36,7 +36,7 @@ refresh_token = "d4a1fd24541add0b69475d718fa428e53c7c06c9"
 album_id = "0bIsRbS"#p97VJXu
 
 
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+
 '''try:#傳送訊息給指定的人
     line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))#傳送訊息給指定的人
 except LineBotApiError as e:
@@ -67,6 +67,7 @@ def callback():
 
     return 'OK'
 
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 @handler.add(MessageEvent, message=(TextMessage, ImageMessage))
 def handle_message(event):
