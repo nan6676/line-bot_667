@@ -22,7 +22,7 @@ import pandas as pd
 
 from datetime import datetime,timezone,timedelta
 
-#Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
 
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
@@ -41,11 +41,11 @@ except LineBotApiError as e:
      error handle
     ...'''
 # 增加的這段放在下面
-'''
+
 @app.route("/")
 def home():
     return render_template("home.html")
-'''
+
 # 接收 LINE 的資訊
 @app.route("/callback", methods=['POST'])
 def callback():
