@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify#增加了 render_template
+from flask import Flask, request, abort, jsonify ,render_template#增加了 render_template
 import requests
 
 from linebot import (
@@ -22,7 +22,7 @@ import pandas as pd
 
 from datetime import datetime,timezone,timedelta
 
-app = Flask(__name__)#app = Flask(__name__, template_folder='template')
+Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
 
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
