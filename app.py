@@ -33,7 +33,7 @@ access_token = "3262520325f32d484f02009e34491aab4ba42507"
 refresh_token = "d4a1fd24541add0b69475d718fa428e53c7c06c9"
 album_id = "0bIsRbS"#p97VJXu
 
-
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 '''try:#傳送訊息給指定的人
     line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))#傳送訊息給指定的人
@@ -229,7 +229,7 @@ def handle_message(event):
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
-        with tempfile.NamedTemporaryFile(dir='./app/static/tmp/', prefix=ext + '-', delete=False) as tf:
+        with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
             for chunk in message_content.iter_content():
                 tf.write(chunk)
             tempfile_path = tf.name
