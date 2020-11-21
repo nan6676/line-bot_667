@@ -248,7 +248,7 @@ def handle_message(event):
                 'album': album_id,
                 'name': user_id,
                 'title': 'Catastrophe!',
-                'description': f'test-{taiwan_time().now()}'
+                'description': f'test-{(taiwan_time().now())}'
             }
             path = os.path.join('static', 'tmp', dist_name)
             client.upload_from_path(path, config=config, anon=False)
