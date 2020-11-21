@@ -229,7 +229,7 @@ def handle_message(event):
 
 
 
-
+        user_id = event.source.user_id
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
