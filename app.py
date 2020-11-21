@@ -65,6 +65,10 @@ def callback():
 
     return 'OK'
 
+def taiwan_time():
+    dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
+    tai_time = dt1.astimezone(timezone(timedelta(hours=8)))
+    return tai_time
 
 
 @handler.add(MessageEvent, message=(TextMessage, ImageMessage))
@@ -242,9 +246,9 @@ def handle_message(event):
             client = ImgurClient(client_id, client_secret, access_token, refresh_token)
             config = {
                 'album': album_id,
-                'name': 'Catastrophe!',
+                'name': user_id,
                 'title': 'Catastrophe!',
-                'description': f'test-{datetime.now()}'
+                'description': f'test-{taiwan_time().now()}'
             }
             path = os.path.join('static', 'tmp', dist_name)
             client.upload_from_path(path, config=config, anon=False)
