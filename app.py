@@ -64,7 +64,7 @@ def callback():
         abort(400)
 
     return 'OK'
-
+#台灣時間
 def taiwan_time():
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
     tai_time = dt1.astimezone(timezone(timedelta(hours=8)))
@@ -241,7 +241,7 @@ def handle_message(event):
 
         dist_path = tempfile_path + '.' + ext
         dist_name = os.path.basename(dist_path)#basename() 用於去掉目錄的路徑，只返回文件名
-        os.rename(tempfile_path, dist_path)
+        os.rename(tempfile_path, dist_path)#修改檔案名稱
         try:
             client = ImgurClient(client_id, client_secret, access_token, refresh_token)
             config = {
