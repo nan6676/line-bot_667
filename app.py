@@ -65,9 +65,9 @@ def callback():
 
     return 'OK'
 #台灣時間
-def taiwan_time():
+def taiwan_time( hour= 8):
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
-    tai_time = dt1.astimezone(timezone(timedelta(hours=8)))
+    tai_time = dt1.astimezone(timezone(timedelta(hours= hour)))
     return tai_time
 
 
