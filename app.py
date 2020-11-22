@@ -33,7 +33,7 @@ access_token = "3262520325f32d484f02009e34491aab4ba42507"
 refresh_token = "d4a1fd24541add0b69475d718fa428e53c7c06c9"
 album_id = "0bIsRbS"#p97VJXu
 
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')#在目前相對路徑上建立料夾
 
 '''try:#傳送訊息給指定的人
     line_bot_api.push_message('Uc607ab2ccc4ac029f44b743c7b1338bc', TextSendMessage(text='Hello World!'))#傳送訊息給指定的人
@@ -252,6 +252,7 @@ def handle_message(event):
             client.upload_from_path(path, config=config, anon=False)
             os.remove(path)
             print(path)
+            print(os.path.abspath(__file__))
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text='上傳成功'))
