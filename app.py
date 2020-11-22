@@ -21,9 +21,15 @@ from imgurpython import ImgurClient#1106
 import pandas as pd
 
 from datetime import datetime,timezone,timedelta
+from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, \
+    line_channel_secret
+
 
 app = Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
 
+line_bot_api = LineBotApi(line_channel_access_token)
+handler = WebhookHandler(line_channel_secret)
+'''
 line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 
@@ -32,7 +38,7 @@ client_secret = 'b34838057c99d05b97e433dda73976c1727cf4ae'
 access_token = "3262520325f32d484f02009e34491aab4ba42507"
 refresh_token = "d4a1fd24541add0b69475d718fa428e53c7c06c9"
 album_id = "0bIsRbS"#p97VJXu
-
+'''
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')#在目前相對路徑上建立料夾
 
 '''try:#傳送訊息給指定的人
