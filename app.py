@@ -67,8 +67,8 @@ def callback():
 #台灣時間
 def taiwan_time( hour= 8):
     dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
-    tai_time = dt1.astimezone(timezone(timedelta(hours= hour)))
-    return tai_time
+    time = dt1.astimezone(timezone(timedelta(hours= hour)))
+    return time
 
 
 @handler.add(MessageEvent, message=(TextMessage, ImageMessage))
@@ -97,10 +97,8 @@ def handle_message(event):
                 event.reply_token,
                 TextSendMessage(text=f'美元 USD 對台幣 TWD：1:{usd_to_twd}'))
         elif input_text == '@回家':
-            dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
-            dt2 = dt1.astimezone(timezone(timedelta(hours=8)))
-            now_day = dt2.strftime("%Y/%m/%d")
-            now_time = dt2.strftime("%H:%M")
+            now_day = taiwan_time().strftime("%Y/%m/%d")
+            now_time = taiwan_time().strftime("%H:%M")
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
             form_data = {
             'SearchType':'S',
