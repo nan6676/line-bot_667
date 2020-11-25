@@ -22,23 +22,14 @@ import pandas as pd
 
 from datetime import datetime,timezone,timedelta
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, \
-    line_channel_secret
+    line_channel_secret#載入帳號設定
 
 
 app = Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
 
 line_bot_api = LineBotApi(line_channel_access_token)
 handler = WebhookHandler(line_channel_secret)
-'''
-line_bot_api = LineBotApi('8NDvVLUVZqlsmuVRXT0BcD2Qv8CDCXfCF/JCnsw7sla2ZV/HzgdYiMxJIjNKbEChLivFSlzZVmEVzGqmERk1sMcBoIqBqrrTQ35+PkQYJcKBSXoerddVUNcseYxBVGFSq8RD6dEtGwSl23mmr/r7eQdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('a5ccb4720386225cccbe5f66d1c9978d')
 
-client_id ='9dbe76c69af5489'
-client_secret = 'b34838057c99d05b97e433dda73976c1727cf4ae'
-access_token = "3262520325f32d484f02009e34491aab4ba42507"
-refresh_token = "d4a1fd24541add0b69475d718fa428e53c7c06c9"
-album_id = "0bIsRbS"#p97VJXu
-'''
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')#在目前相對路徑上建立料夾
 
 '''try:#傳送訊息給指定的人
@@ -245,16 +236,16 @@ def handle_message(event):
 
         dist_path = tempfile_path + '.' + ext
         dist_name = os.path.basename(dist_path)#basename() 用於去掉目錄的路徑，只返回文件名
-        os.rename(tempfile_path, dist_path)#修改檔案名稱
+        os.rename(tempfile_path, dist_path)#修改檔案名稱(修改前,修改後)
         try:
             client = ImgurClient(client_id, client_secret, access_token, refresh_token)
             config = {
                 'album': album_id,
                 'name': user_id,
-                'title': 'Catastrophe!',
-                'description': f'test-{taiwan_time()}'
+                'title': 'Form-LINE_updata',
+                'description': f'{taiwan_time()}'
             }
-            path = os.path.join('static', 'tmp', dist_name)
+            path = os.path.join('static', 'tmp', dist_name)#合併目錄
             client.upload_from_path(path, config=config, anon=False)
             os.remove(path)
             print(path)
