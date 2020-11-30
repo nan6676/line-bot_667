@@ -97,12 +97,10 @@ def handle_message(event):
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
-            thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoL', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
+            thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoLi', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
             
             ss = str(event.message.text)[5:7]
             es = str(event.message.text)[-2:]
-            print('1'+ss)
-            print('1'+es)
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
@@ -153,11 +151,11 @@ def handle_message(event):
         # 整理成表格
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
-                '從南港': departure_times,
-                '到桃園': arrival_times,
+                '從'+ ss: departure_times,
+                '到'+ es: arrival_times,
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
-                columns = [ '從南港', '到桃園', '行車時間', '自由坐車廂'], index = train_numbers)
+                columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
             filter = highway_df["從南港"] > now_time
             highway_df1 = highway_df[filter]
 
