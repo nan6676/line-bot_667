@@ -101,6 +101,8 @@ def handle_message(event):
             
             ss = str(event.message.text)[5:7]
             es = str(event.message.text)[-2:]
+            print('1'+ss)
+            print('1'+es)
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
