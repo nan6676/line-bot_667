@@ -93,15 +93,19 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=f'美元 USD 對台幣 TWD：1:{usd_to_twd}'))
-        elif '@回家' in input_text:
+        elif '@thsr' in input_text:
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
+            thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoL', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
+            
+            ss = str(imput_text)[5:7]
+            es = str(imput_text)[-2:]
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
-            'StartStation': 'NanGang',
-            'EndStation': 'TaoYuan',
+            'StartStation': thsrc_station[ss],
+            'EndStation': thsrc_station[es],
             'OutWardSearchDate': now_day,
             'OutWardSearchTime': now_time,
             'ReturnSearchDate': now_day,
