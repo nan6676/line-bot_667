@@ -156,7 +156,7 @@ def handle_message(event):
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
                 columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
-            filter = highway_df["從南港"] > now_time
+            filter = highway_df["從"+ ss] > now_time
             highway_df1 = highway_df[filter]
 
 
