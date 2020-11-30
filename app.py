@@ -101,6 +101,9 @@ def handle_message(event):
             
             ss = str(event.message.text)[5:7]
             es = str(event.message.text)[-2:]
+            if ss == "":
+                ss = '南港'
+                es = '桃園'
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
