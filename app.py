@@ -93,7 +93,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=f'美元 USD 對台幣 TWD：1:{usd_to_twd}'))
-        elif input_text in '@回家':
+        elif '@回家' in input_text:
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
