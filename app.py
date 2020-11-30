@@ -99,8 +99,8 @@ def handle_message(event):
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
             thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoL', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
             
-            ss = str(imput_text)[5:7]
-            es = str(imput_text)[-2:]
+            ss = str(event.message.text)[5:7]
+            es = str(event.message.text)[-2:]
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
