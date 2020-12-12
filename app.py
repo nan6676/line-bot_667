@@ -22,7 +22,7 @@ import pandas as pd
 
 from datetime import datetime,timezone,timedelta
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, \
-    line_channel_secret#載入帳號設定
+    line_channel_secret, uesr_name_myself#載入帳號設定
 
 
 app = Flask(__name__, template_folder='template')#app = Flask(__name__, template_folder='template')
@@ -232,6 +232,8 @@ def handle_message(event):
 
 
         user_id = event.source.user_id
+        if str(user_id) in uesr_name_myself:
+            user_id = uesr_name_myself[user_id]
         ext = 'jpg'
         #static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
         message_content = line_bot_api.get_message_content(event.message.id)#(event.message.id)
