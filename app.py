@@ -251,7 +251,7 @@ def handle_message(event):
             config = {
                 'album': album_id,
                 'name': user_id,
-                'title': 'Form-LINE_updata',
+                'title': user_id+' updata',
                 'description': f'{taiwan_time()}'
             }
             path = os.path.join('static', 'tmp', dist_name)#合併目錄
