@@ -259,8 +259,8 @@ def handle_message(event):
             os.remove(path)
             print(path)
             print(os.path.abspath(__file__))
-            if str(user_id) not in uesr_name_myself:
-                user_id = '您'
+            #if str(user_id) not in uesr_name_myself:
+            #    user_id = '您'
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= user_id+'的好圖我收了'))
