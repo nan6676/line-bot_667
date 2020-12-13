@@ -261,7 +261,7 @@ def handle_message(event):
             print(os.path.abspath(__file__))
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text='上傳成功'))
+                TextSendMessage(text= user_id+'傳了好圖'))
         except:
             line_bot_api.reply_message(
                 event.reply_token,
