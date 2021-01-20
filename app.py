@@ -99,16 +99,16 @@ def handle_message(event):
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
             thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoLi', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
             
-            ss_ = str(event.message.text)[5:7]
-            es_ = str(event.message.text)[-2:]
-            if ss_ == "":
-                ss_ = '南港'
-                es_ = '桃園'
+            ss = str(event.message.text)[5:7]
+            es = str(event.message.text)[-2:]
+            if ss == "":
+                ss = '南港'
+                es = '桃園'
             form_data = {
             'SearchType':'S',
             'Lang': 'TW',
-            'StartStation': thsrc_station[ss_],
-            'EndStation': thsrc_station[es_],
+            'StartStation': thsrc_station[ss],
+            'EndStation': thsrc_station[es],
             'OutWardSearchDate': now_day,
             'OutWardSearchTime': now_time,
             'ReturnSearchDate': now_day,
@@ -155,12 +155,12 @@ def handle_message(event):
             
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
-                '從'+ ss_: departure_times,
-                '到'+ es_: arrival_times,
+                '從'+ ss: departure_times,
+                '到'+ es: arrival_times,
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
-                columns = [ '從'+ ss_, '到'+ es_, '行車時間', '自由坐車廂'], index = train_numbers)
-            filter = highway_df['從'+ ss_] > now_time
+                columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
+            filter = highway_df['從'+ ss] > now_time
             highway_df = highway_df[filter]
             
 
@@ -311,7 +311,7 @@ def handle_message(event):
                 '到'+ es: arrival_times,
                 '行車時間': duration},
                 columns = ['從'+ ss, '到'+ es,'行車時間'], index = train_numbers )
-            pd.set_option("display.max_rows", None)
+            #pd.set_option("display.max_rows", None)
             filter = taiwan_railway_df["從"+ ss] > now_time
             taiwan_railway_df = taiwan_railway_df[filter]
 
