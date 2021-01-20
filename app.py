@@ -155,12 +155,12 @@ def handle_message(event):
             
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
-                '從'+ ss: departure_times,
-                '到'+ es: arrival_times,
+                '從': departure_times,
+                '到': arrival_times,
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
-                columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
-            filter = highway_df['從'+ ss] > now_time
+                columns = [ '從', '到', '行車時間', '自由坐車廂'], index = train_numbers)
+            filter = highway_df['從'] > now_time
             highway_df = highway_df[filter]
             
 
