@@ -152,6 +152,7 @@ def handle_message(event):
                 nonreservedcar.append(item['NonReservedCar'])            
 
             # 整理成表格
+            '''
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
                 '從'+ ss: departure_times,
@@ -161,12 +162,12 @@ def handle_message(event):
                 columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
             filter = highway_df['從'+ ss] > now_time
             highway_df1 = highway_df[filter]
-
+            '''
 
 
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=f'{highway_df1}')) 
+                TextSendMessage(text=f'{nonreservedcar}')) 
 
         elif input_text == '@ID':   
             line_bot_api.reply_message(
