@@ -155,16 +155,14 @@ def handle_message(event):
             
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
-                '從': departure_times,
-                '到': arrival_times,
+                '從'+ ss: departure_times,
+                '到'+ es: arrival_times,
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
-                columns = [ '從', '到', '行車時間', '自由坐車廂'], index = train_numbers)
-            filter = highway_df['從'] > now_time
+                columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
+            filter = highway_df['從'+ ss] > now_time
             highway_df = highway_df[filter]
             
-
-
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=f'{ highway_df}')) 
@@ -303,7 +301,6 @@ def handle_message(event):
                 duration.append(durations_[3].text)
 
             # 整理成表格
-            import pandas as pd
 
             taiwan_railway_df = pd.DataFrame({
                 '車次': train_numbers,
