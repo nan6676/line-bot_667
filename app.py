@@ -159,7 +159,7 @@ def handle_message(event):
                 '行車時間': duration,
                 '自由坐車廂': nonreservedcar},
                 columns = [ '從'+ ss, '到'+ es, '行車時間', '自由坐車廂'], index = train_numbers)
-            filter = highway_df["從"+ ss] > now_time
+            filter = highway_df['從'+ ss] > now_time
             highway_df1 = highway_df[filter]
 
 
@@ -225,7 +225,7 @@ def handle_message(event):
                         event.reply_token,
                         TextSendMessage(text= f'{ line}'))
 
-'''
+
         elif '@tr' in input_text:
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
@@ -317,7 +317,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= f'{ taiwan_railway_df}'))
-'''
+
 
 
                 
