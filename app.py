@@ -146,12 +146,12 @@ def handle_message(event):
             for item in trainItem:
                 duration.append(item['Duration'])
 
-        # 自由坐車廂(NonReservedCar)
+            # 自由坐車廂(NonReservedCar)
             nonreservedcar = []
             for item in trainItem:
                 nonreservedcar.append(item['NonReservedCar'])            
 
-        # 整理成表格
+            # 整理成表格
             highway_df = pd.DataFrame({
                 '車次': train_numbers,
                 '從'+ ss: departure_times,
