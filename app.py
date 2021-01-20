@@ -225,7 +225,7 @@ def handle_message(event):
                         event.reply_token,
                         TextSendMessage(text= f'{ line}'))
 
-
+'''
         elif '@tr' in input_text:
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
@@ -317,7 +317,7 @@ def handle_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= f'{ taiwan_railway_df}'))
-
+'''
 
 
                 
