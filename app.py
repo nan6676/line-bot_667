@@ -167,7 +167,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=f'{nonreservedcar}')) 
+                TextSendMessage(text=f'{len(nonreservedcar),len(duration),len(arrival_times),len(departure_times),len(train_numbers)}')) 
 
         elif input_text == '@ID':   
             line_bot_api.reply_message(
