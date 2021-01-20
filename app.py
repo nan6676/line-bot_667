@@ -224,6 +224,102 @@ def handle_message(event):
             line_bot_api.reply_message(
                         event.reply_token,
                         TextSendMessage(text= f'{ line}'))
+
+
+        elif '@tr' in input_text:
+            now_day = taiwan_time().strftime("%Y/%m/%d")
+            now_time = taiwan_time().strftime("%H:%M")
+            url = 'https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/querybytime'
+            taiwan_railway_station = {'基隆':'0900-基隆','三坑':'0910-三坑','八堵':'0920-八堵','七堵':'0930-七堵','百福':'0940-百福','五堵':'0950-五堵','汐止':'0960-汐止','汐科':'0970-汐科','南港':'0980-南港','松山':'0990-松山','台北':'1000-臺北','臺北-環島':'1001-臺北-環島','萬華':'1010-萬華','板橋':'1020-板橋','浮洲':'1030-浮洲','樹林':'1040-樹林', \
+            '南樹林':'1050-南樹林','山佳':'1060-山佳','鶯歌':'1070-鶯歌','桃園':'1080-桃園','內壢':'1090-內壢','中壢':'1100-中壢','埔心':'1110-埔心','楊梅':'1120-楊梅','富岡':'1130-富岡','新富':'1140-新富','北湖':'1150-北湖','湖口':'1160-湖口','新豐':'1170-新豐','竹北':'1180-竹北','北新竹':'1190-北新竹','千甲':'1191-千甲','新莊':'1192-新莊','竹中':'1193-竹中', \
+            '六家':'1194-六家','上員':'1201-上員','榮華':'1202-榮華','竹東':'1203-竹東','橫山':'1204-橫山','九讚頭':'1205-九讚頭','合興':'1206-合興','富貴':'1207-富貴','內灣':'1208-內灣','新竹':'1210-新竹'}
+
+            ss = (str(z)[3:5])
+            es= (str(z)[-2:])
+            if ss == "":
+                ss = '埔心'
+                es = '台北'
+            form_data = {
+                'startStation': taiwan_railway_station[ss],
+                'endStation': taiwan_railway_station[es],
+                'transfer': 'ONE',
+                'rideDate': now_day,
+                'startOrEndTime': 'true',
+                'startTime': '00:00',
+                'endTime': '23:59',
+                'trainTypeList': 'ALL',
+                '_isQryEarlyBirdTrn': 'on',
+                'query': '查詢'
+            }
+
+            response_post = requests.post(url, data=form_data)
+            response_post.text
+            soup = BeautifulSoup(response_post.text, 'html.parser')
+
+            train_number = soup.find_all('a',{'class': ['links icon-fa icon-train chukuang','links icon-fa icon-train', \
+                'links icon-fa icon-train taroko','links icon-fa icon-train tzechiang','links icon-fa icon-train puyuma']})
+            d_and_a_time = soup.find_all('span', {'class': 'time'})
+            durations = soup.find_all('tr', {'class': 'trip-column'})#('tr', {'class': 'train-number'})
+            location = soup.find_all('span',{'class':'location'})
+
+            # 班車資訊
+            train_number_infs = []
+            count = 1
+            start_station = None
+            end_station = None
+            for locat in location:
+                if (count % 6) == 1:
+                    start_station = (locat.text)
+                elif (count % 6) == 4:
+                    end_station = (locat.text)
+                elif (count % 6) == 0:
+                    train_number_infs.append( '('+ start_station+ '->' + end_station+ ')')
+                count +=1
+
+            # 所有班車(train_number)合併班車資訊
+            train_numbers = []
+            count = 0
+            for item in train_number:
+                train_numbers.append(item.text+train_number_infs[count])
+                count +=1
+
+            # 所有出發時間(departure_time)
+            # 所有到達時間(arrival_time)
+            departure_times = []
+            arrival_times = []
+            count = 1
+            for item in d_and_a_time:
+                if (count % 2) == 0:
+                    arrival_times.append(item.text)
+                else:
+                    departure_times.append(item.text)
+                count += 1
+
+            # 所有行車時間(duration)
+            duration = []
+            for i in range(len(departure_times)):
+                durations_ = durations[i].find_all('td')
+                duration.append(durations_[3].text)
+
+            # 整理成表格
+            import pandas as pd
+
+            taiwan_railway_df = pd.DataFrame({
+                '車次': train_numbers,
+                '從'+ ss: departure_times,
+                '到'+ es: arrival_times,
+                '行車時間': duration},
+                columns = ['從'+ ss, '到'+ es,'行車時間'], index = train_numbers )
+            pd.set_option("display.max_rows", None)
+            filter = taiwan_railway_df["從"+ ss] > now_time
+            taiwan_railway_df = taiwan_railway_df[filter]
+
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text= f'{ taiwan_railway_df}'))
+
+
+
                 
 
 
