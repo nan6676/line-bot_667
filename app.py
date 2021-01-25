@@ -97,7 +97,7 @@ def handle_message(event):
             now_day = taiwan_time().strftime("%Y/%m/%d")
             now_time = taiwan_time().strftime("%H:%M")
             url = 'https://www.thsrc.com.tw/TimeTable/Search'
-            thsrc_station = { '南港':'NanGang', '台北':'TaiPei', '板橋':'BanQiao', '桃園':'TaoYuan', '新竹':'XinZhu', '苗栗':'MiaoLi', '台中':'TaiZhong', '彰化':'ZhangHua', '雲林':'YunLin', '嘉義':'JiaYi', '台南':'TaiNan', '左營':'ZuoYing'}
+            from config import thsrc_station#載入車站資訊
             
             ss = str(event.message.text)[5:7]
             es = str(event.message.text)[-2:]
