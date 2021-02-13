@@ -254,7 +254,7 @@ def handle_message(event):
             soup = BeautifulSoup(response_post.text, 'html.parser')
 
             train_number = soup.find_all('a',{'class': ['links icon-fa icon-train chukuang','links icon-fa icon-train', \
-                'links icon-fa icon-train taroko','links icon-fa icon-train tzechiang','links icon-fa icon-train puyuma']})
+                'links icon-fa icon-train taroko','links icon-fa icon-train tzechiang','links icon-fa icon-train puyuma','links icon-fa icon-train fuhsing']})
             d_and_a_time = soup.find_all('span', {'class': 'time'})
             durations = soup.find_all('tr', {'class': 'trip-column'})#('tr', {'class': 'train-number'})
             location = soup.find_all('span',{'class':'location'})
