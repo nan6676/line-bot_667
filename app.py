@@ -218,7 +218,7 @@ def handle_message(event):
         
             count = (len(issue))
             for x in range(count):
-                line = (str(line))+ ((str(x))+'.'+ issue[x]+' '+ form[x] +'\n')
+                line = f'{line}{x+1:>2}.{issue[x]} {form[x]}\n'
 
             line_bot_api.reply_message(
                         event.reply_token,
