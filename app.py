@@ -165,7 +165,7 @@ def handle_message(event):
             
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=f'{ highway_df}')) 
+                TextSendMessage(text=f'{highway_df}')) 
 
         elif input_text == '@ID':   
             line_bot_api.reply_message(
@@ -195,7 +195,7 @@ def handle_message(event):
         
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text= f'{ line}'))
+                TextSendMessage(text= f'{line}'))
 
     
         elif input_text == '@ptt':
@@ -312,7 +312,7 @@ def handle_message(event):
 
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text= f'{ taiwan_railway_df}'))
+                TextSendMessage(text= f'{taiwan_railway_df}'))
 
 
 
