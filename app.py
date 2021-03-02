@@ -218,11 +218,11 @@ def handle_message(event):
         
             count = (len(issue))
             for x in range(count):
-                line = f'{line}{x+1:>3}.{issue[x]} {form[x]}\n'
+                line = f'{line}{x+1:>2}.{issue[x]} {form[x]}\n'
 
             line_bot_api.reply_message(
                         event.reply_token,
-                        TextSendMessage(text= f'{ line}'))
+                        TextSendMessage(text= f'{line}'))
 
 
         elif '@tr' in input_text:
