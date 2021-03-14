@@ -19,7 +19,7 @@ import json
 import tempfile, os#1106
 from imgurpython import ImgurClient#1106
 import pandas as pd
-
+import psycopg2#20210314新增
 from datetime import datetime,timezone,timedelta
 from config import client_id, client_secret, album_id, access_token, refresh_token, line_channel_access_token, \
     line_channel_secret, uesr_name_myself#載入帳號設定
@@ -347,12 +347,24 @@ def handle_message(event):
                 'description': f'{taiwan_time()}'
             }
             path = os.path.join('static', 'tmp', dist_name)#合併目錄
-            client.upload_from_path(path, config=config, anon=False)
+            image = client.upload_from_path(path, config=config, anon=False)
             os.remove(path)
             print(path)
             print(os.path.abspath(__file__))
             if str(event.source.user_id) not in uesr_name_myself:
                 user_id = '您'
+            #上傳資料庫動作
+            DATABASE_URL = os.environ['DATABASE_URL']
+            conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+            cur = conn.cursor()
+            record = (user_id, f"{image['link']}", f'{taiwan_time()}')
+            table_columns = '(upload_name, image_link, upload_time)'
+            postgres_insert_query = f"""INSERT INTO image_upload_record {table_columns} VALUES (%s, %s, %s);"""
+            cur.execute(postgres_insert_query, record)
+            conn.commit()
+            cur.close()
+            conn.close()
+
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= user_id+'的好圖我收了'))
