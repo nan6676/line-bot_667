@@ -359,7 +359,7 @@ def handle_message(event):
             now = taiwan_time().strftime("%Y/%m/%d %H:%M:%S")
             #conn = psycopg2.connect(database="d80lcf0b71sa76", user="xnavavfqdaddoh", password="8cca363d4b7ae40560ce2713bee7c742bb5c604b263b3b927ecee9ee8199df2d", host="ec2-54-161-239-198.compute-1.amazonaws.com", port="5432")
             cur = conn.cursor()
-            record = (user_id, f"{image['link']}", f'{[now]}')
+            record = (user_id, f"{image['link']}", f'{now}')
             table_columns = '(upload_name, image_link, upload_time)'
             postgres_insert_query = f"""INSERT INTO image_upload_record {table_columns} VALUES (%s, %s, %s);"""
             cur.execute(postgres_insert_query, record)
