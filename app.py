@@ -314,9 +314,31 @@ def handle_message(event):
                 event.reply_token,
                 TextSendMessage(text= f'{taiwan_railway_df}'))
 
+        elif '@search' in input_text:
+            upload_name = str(event.message.text)[7:]
 
+            DATABASE_URL = os.environ['DATABASE_URL']
+            conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+            cur = conn.cursor()
+            postgres_select_query = f"""SELECT * FROM image_upload_record WHERE upload_name = %s"""
+            cur.execute(postgres_select_query, (upload_name,))
 
-                
+            hyperlinks = []
+            upload_times = []
+            for link in cur.fetchall():
+                hyperlinks.append(link[2])
+                upload_times.append(link[3])
+
+            image_upload_record_df = pd.DataFrame({
+                upload_name+ '的圖片連結': hyperlinks,
+                '上傳時間': upload_times},
+                columns = [ upload_name+ '的圖片連結', 上傳時間])
+
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text= f'{ image_upload_record_df}'))
+
+      
 
 
     if isinstance(event.message, ImageMessage):
@@ -357,7 +379,6 @@ def handle_message(event):
             DATABASE_URL = os.environ['DATABASE_URL']
             conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             now = taiwan_time().strftime("%Y/%m/%d %H:%M:%S")
-            #conn = psycopg2.connect(database="d80lcf0b71sa76", user="xnavavfqdaddoh", password="8cca363d4b7ae40560ce2713bee7c742bb5c604b263b3b927ecee9ee8199df2d", host="ec2-54-161-239-198.compute-1.amazonaws.com", port="5432")
             cur = conn.cursor()
             record = (user_id, f"{image['link']}", f'{now}')
             table_columns = '(upload_name, image_link, upload_time)'
