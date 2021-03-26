@@ -332,7 +332,7 @@ def handle_message(event):
             image_upload_record_df = pd.DataFrame({
                 upload_name+ '的圖片連結': hyperlinks,
                 '上傳時間': upload_times},
-                columns = [ upload_name+ '的圖片連結', 上傳時間])
+                columns = [ upload_name+ '的圖片連結', '上傳時間'])
 
             line_bot_api.reply_message(
                 event.reply_token,
